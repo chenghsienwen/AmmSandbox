@@ -34,12 +34,15 @@ implicit val throwableShow: Show[Throwable] =
 (t: Throwable) =>
     p"""${t.getClass.getName} occurred${t.getMessage.|>(m => m.fold(p", reason:`$m`")((a, b) => p"$a $b"))}"""
 
-// final case class ThrowableDetail(t: Throwable) extends Detail[Throwable] {
-//     override def detailMsg(implicit show: Show[Throwable]): String = show.show(t)
-// }
+trait Detail[T]  extends Product with Serializable {
+    def detailMsg(implicit show: Show[T]): String
+}
+final case class ThrowableDetail(t: Throwable) extends Detail[Throwable] {
+    override def detailMsg(implicit show: Show[Throwable]): String = show.show(t)
+}
 object SampleErrorApp extends OpLogger {
   def writeErrorLog(d: WithErrorOperationLog[Throwable, SampleData]): String =
     (IO.delay(println("Error op log ==> ")) *> logWithError[IO, Throwable, SampleData](d)).unsafeRunSync
 }
-
+println(sampleWithErrorLog.error.e.|> (ThrowableDetail(_)))
 println(SampleErrorApp.writeErrorLog(sampleWithErrorLog))

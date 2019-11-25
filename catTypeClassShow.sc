@@ -1,3 +1,5 @@
+//ref:https://typelevel.org/cats/typeclasses/show.html
+
 import $ivy.`org.typelevel::cats-core:2.0.0`
 
 import cats.Show
