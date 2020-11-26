@@ -22,7 +22,11 @@ list.map{ item =>
     val nomalizedItem = item.filterNot(i => i._2 == "NULL").map{ 
         i => 
             Try(i._2.toDouble) match {
-                case Success(v) => s".${i._1}" -> i._2
+                case Success(v) => {
+                    i._1.split("\\.").last.startWith("is") match {
+                        case true => s".${i._1}" -> (v == 1)
+                        case false => s".${i._1}" -> i._2
+                    }
                 case Failure(ex) => s".${i._1}" ->( "\"" + i._2 + "\"")
             }
     }
