@@ -1,5 +1,5 @@
 
-//NOTE: only work on repl, script still fail
+
 import $ivy.`org.typelevel::cats-core:2.0.0`
 //ref: https://github.com/com-lihaoyi/Ammonite/issues/534
 //ref: https://gist.github.com/MateuszKubuszok/a80503b28f289f08f2f6c6c70871e8d3#log-implicits
