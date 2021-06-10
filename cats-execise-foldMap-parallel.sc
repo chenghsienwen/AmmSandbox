@@ -1,5 +1,7 @@
+//NOTE: only work on repl, script still fail
 import $ivy.`org.typelevel::cats-core:2.0.0`
-
+// interp.configureCompiler(_.settings.Ydelambdafy.value ="inline")
+// @
 import cats.{Monoid, Monad}
 import cats.instances.all._
 import cats.syntax.foldable._
@@ -40,5 +42,10 @@ parallelFoldMap(Vector(1, 2, 3))(identity)
 parallelFoldMap(Vector(1, 2, 3))(_.toString + "! ")
 
 parallelFoldMap("Hello world!".toVector)(_.toString.toUpperCase)
+
+val future: Future[Int] = parallelFoldMap((1 to 1000).toVector)(_ * 1000)
+val result = Await.result(future, 1.second)
+
+println(result)
 
 
