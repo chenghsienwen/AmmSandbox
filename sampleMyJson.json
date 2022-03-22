@@ -1,0 +1,37 @@
+{
+    "id": "0c53b0a471674179860ac75ecc5ed473",
+    "site": {
+        "id": "site1",
+        "domain": "vpon.com"
+    },
+    "imp": [
+        {
+            "id": "d17b076eeb964414a57955f24f583935",
+            "instl": 1,
+            "bidfloor": 1100000,
+            "bidfloorcur": "TWD"
+        }
+    ],
+    "device": {
+        "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11B554a",
+        "ip": "110.249.163.214",
+        "os": "iPhone OS",
+        "w": 1920,
+        "h": 1080,
+        "ppi": 100,
+        "pxratio": 2.4,
+        "language": "zh",
+        "rdid": "123e4567e89b12d3a456426655440000",
+        "rdidtype": "idfa"
+    },
+    "user": {
+        "id": "123456",
+        "buyeruid": "654321",
+        "yob": 2015,
+        "gender": "M"
+    },
+    "test": 0,
+    "at": 2,
+    "tmax": 3,
+    "wseat": []
+}
