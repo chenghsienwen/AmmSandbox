@@ -26,7 +26,7 @@ def parseString(input: String): Config = ConfigFactory.parseString(input, option
 
 val configText =     """
        kamon {
-           metric.tick-interval = 0.1 seconds
+           metric.tick-interval = 10 seconds
             modules.prometheus-reporter.enabled = false
             prometheus.start-embedded-http-server = false
             system-metrics {
@@ -51,7 +51,7 @@ val counter = Kamon.counter("default-value").withoutTags()
 counter.increment(11)
 val time = 10
 (0 to time).map{ i =>
-    Thread.sleep(1000)
+    Thread.sleep(1010)
     
     
     // println(s"setting ${Kamon.status().settings()}")

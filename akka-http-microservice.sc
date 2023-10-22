@@ -121,16 +121,15 @@ trait Service extends Protocols {
 
 object AkkaHttpMicroservice extends Service {
   override implicit val system = ActorSystem()
-  override implicit val executor = system.dispatcher
+  // override implicit val executor = system.dispatcher
   override implicit val materializer = ActorMaterializer()
   val fileConfig = ConfigFactory.parseFile(new File("resources/application.conf"))
 
   override val config = ConfigFactory.load(fileConfig)
   override val logger = Logging(system, getClass)
 
-  Http().bindAndHandle(routes, config.getString("http.interface"), config.getInt("http.port"))
+  Http().bindAndHandle(routes, config.getString("http.interface"), config.getInt("http.port")).andThen{case _ => println("Ready.")}
 }
-
 Await.ready(AkkaHttpMicroservice.system.whenTerminated, Duration.Inf)
 
 

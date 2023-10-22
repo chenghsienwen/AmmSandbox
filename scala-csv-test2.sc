@@ -23,10 +23,11 @@ list.map{ item =>
         i => 
             Try(i._2.toDouble) match {
                 case Success(v) => {
-                    i._1.split("\\.").last.startWith("is") match {
-                        case true => s".${i._1}" -> (v == 1)
+                    i._1.split("\\.").last.startsWith("is") match {
+                        case true => s".${i._1}" -> (v == 1).toString
                         case false => s".${i._1}" -> i._2
                     }
+                }
                 case Failure(ex) => s".${i._1}" ->( "\"" + i._2 + "\"")
             }
     }

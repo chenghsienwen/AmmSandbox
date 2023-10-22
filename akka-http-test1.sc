@@ -23,5 +23,11 @@ def shutdown = bindingFuture.flatMap(_.unbind()).onComplete{_ => system.terminat
  Following lines allow to wait for the actor system to be terminated
  */
 import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-Await.result(system.whenTerminated, Duration.Inf)
+import scala.concurrent.duration._
+Await.result(system.whenTerminated, 10.seconds)
+@main
+def main() = {
+  // Await.ready(system.whenTerminated, Duration.Inf)
+  println("server started at 8080")
+  println("akka http: " + requests.get("http://localhost:8080").text())
+}
